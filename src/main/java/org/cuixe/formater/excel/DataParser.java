@@ -39,9 +39,8 @@ public class DataParser {
 
     private void parseLine(String line) {
         String format = line.substring(0, 4);
-        System.out.println("FORMAT: "  + format);
         if(!layoutParser.getMapFormats().containsKey(format)) {
-            System.out.println("NO ENCONTRADO");
+            System.out.println("FORMATO: "  + format + " NO ENCONTRADO");
             return;
         }
         Format format1 = layoutParser.getMapFormats().get(format);

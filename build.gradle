@@ -9,7 +9,37 @@ repositories {
     mavenCentral()
 }
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.apache.poi:poi-ooxml:3.16'
+}
+
+task copyLib(type:Copy) {
+    from "${buildDir}/libs/"
+    into "./release"
+    include "**/*"
+}
+
+task copyShell(type:Copy) {
+    from "src/main/resources/"
+    into "./release"
+    include "**/*"
+}
+
+task release(dependsOn:[clean,shadowJar]) << {
+    new File("./release").mkdir()
+    new File("./release/files").mkdir()
+    copyLib.copy()
+    copyShell.copy()
 }

@@ -18,7 +18,6 @@ public class LayoutParser {
     private final int POSITION = 2;
     private final int FIELD_NAME = 3;
     private final int FORMAT_ROW = 4;
-    private final int FORMAT = 7;
 
     private List<Format> formats = new ArrayList<>();
     private Map<String, Format> mapFormats = new HashMap<>();
